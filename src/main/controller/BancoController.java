@@ -1,6 +1,5 @@
+package main.controller;
 import java.util.Scanner;
-
-private class BancoController extends main{
-
+public class BancoController{
 
 }

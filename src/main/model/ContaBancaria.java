@@ -34,17 +34,7 @@ public class ContaBancaria {
         Scanner sc = new Scanner(System.in);
         double valor;
 
-        do {
-            System.out.print("Insira o valor a ser depositado: ");
-            valor = sc.nextDouble();
 
-            if (valor <= 0) {
-                System.out.println("⚠ O valor deve ser maior que 0.");
-            }
-        } while (valor <= 0);
-
-        saldo += valor; // soma no saldo
-        System.out.println("✅ Depósito realizado com sucesso! Saldo atual: R$ " + saldo);
 
     }
 
