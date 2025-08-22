@@ -1,63 +1,84 @@
-package main.controller;
-import main.model.ContaBancaria;
 import java.util.Scanner;
-public class main {
+import java.util.List;
+import java.util.ArrayList;
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        ContaBancaria conta = null; // null = n existe conta
+import main.model.*;
+import main.controller.BancoController;
 
-        while(true){ //faz o menu ficar em loop
-            System.out.println("======MENU DE OPÇÕES=======");
-            System.out.println("1_ Criar Conta");
-            System.out.println("2_ Entrar na conta");
-            System.out.println("3_ Sair");
-            System.out.println("Escolha uma opção");
+public static void main(String[] args) {
+    Scanner teclado = new Scanner(System.in);
 
-            int opcao = new scanner.nextInt();
-            scanner.nextLine();
 
-            switch(opcao){
-                case 1 -> {
-                    //Criar conta
-                    System.out.println("Digite seu nome: ");
-                    String  nome = scanner.nextLine();
+    //---------instancia da ContaCLiente-------------//
+        ContaCliente op = new ContaCliente();
+    BancoController controller = new BancoController();
 
-                    System.out.println("Digite seu CPF: ");
-                    String CPF = scanner.nextLine();
 
-                    System.out.println("Digite seu E-mail");
-                    String email = scanner.nextLine();
+    //Lista de contas
+    List<ContaBancaria> contas = new ArrayList<>();
+    List<Cliente> clientes = new ArrayList<>();
+    int opcao = -1;
 
-                    System.out.println("Digite seu telefone: ");
-                    String telefone = scanner.nextLine();
+    while(opcao != 3) {
+        //Menu 1
+        System.out.println("==== MENU ======");
+        System.out.println("1 - Logar");
+        System.out.println("2 - Cadastrar");
+        System.out.println("3 - Sair");
 
-                    // Criar objeto Cliente
-                    Cliente cliente = new Cliente(nome,CPF,email,telefone);
+        // Validar se é um número
+        if (teclado.hasNextInt()) {
+            opcao = teclado.nextInt();
+            teclado.nextLine();
 
-                    // Criar objeto ContaBancaria
-                    Conta = new contaBancaria("1234", 0.0, clinete);
 
-                    System.out.println("Conta criada com sucesso");
-                    System.out.println(conta);
-                }
-                case 2 -> {
-                    //Entrar na conta
-                    if(conta != null){
-                        System.out.println("Bem vindo a conta" + conta.getCliente() .getNome());
-                        System.out.println("Saldo atual:" + conta.getSaldo());
-                    }else{
-                        System.out.println("Nenhuma conta criada ainda. Crie uma conta primeiro.");
+            switch (opcao) {
+                case 1:
+                    //cod metodos Login
+                    System.out.println("Digite o User: ");
+                    String user = teclado.next();
+
+                    System.out.println("Digite sua senha");
+                    String senha = teclado.next();
+
+                    boolean logado = controller.login(clientes, user, email);
+
+                    if (logado) {
+                        System.out.println("Login realizado com sucesso!");
+
+                    } else {
+                        System.out.println("Usuário ou email inválidos!");
                     }
-                }
-                case 3 -> {
-                    //sair da conta
-                    System.out.println("Saindo...");
-                    return;
-                }
-                defaul -> System.out.println("Opção invalida! Tente novamente")
 
+                    break;
+
+                case 2:
+                    // cod metodo Cadastro
+                    System.out.println("Digite seu nome de usuario");
+                    String nome = teclado.next();
+
+                    System.out.println("Digite sua senha");
+                    String Senha = teclado.next();
+
+                    System.out.println("Digite seu CPF");
+                    String CPF = teclado.next();
+
+                    System.out.println("Digite seu telefone");
+                    String telefone = teclado.next();
+                    
+                    controller.novoCliente(clientes, nome, email, CPF, telefone);
+                    break;
+
+
+                case 3:
+                    //Cod sair
+                    System.out.println("Saindo...");
+                    break;
             }
         }
     }
 }
+
+private static String email;
+
+

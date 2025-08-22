@@ -11,6 +11,10 @@ public class ContaCliente {
         this.cliente = cliente;
     }
 
+    public ContaCliente() {
+
+    }
+
     public String getUser() {
         return User;
     }

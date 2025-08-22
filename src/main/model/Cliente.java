@@ -5,7 +5,12 @@ public class Cliente{
     private String cpf;
     private String telefone;
 
+
     public Cliente() {
+    }
+
+    public static void add(Cliente novo) {
+
     }
 
     public String getNome() {
